@@ -2,8 +2,11 @@
 require('database.php');
 
 
-$query = '';// PUT YOUR SQL QUERY HERE
-// Example: $query = 'SELECT * FROM customers';
+$query = 'SELECT c.customerID, emailAddress, firstName, lastName, phone, line1, city, state, zipCode
+FROM addresses a 
+INNER JOIN customers c
+ON a.customerID = c.customerID
+GROUP BY c.customerID';
 
 $statement = $db->prepare($query);
 $statement->execute();
